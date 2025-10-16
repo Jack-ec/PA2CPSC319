@@ -21,7 +21,11 @@ public class PA2 {
 			// TODO (1.1) Prompt the user to enter an input file name, read the filename from standard input,
 			//          and print a confirmation message before proceeding with file operations.
 
-			// ** YOUR CODE HERE **
+			Scanner sc;
+            sc = new Scanner(System.in);
+            System.out.println("Please Enter a File name: ");
+			String inputFileName;
+			inputFileName = sc.next();
 
 			// Debugging: Print filename before reading
 			System.out.println();
@@ -31,9 +35,11 @@ public class PA2 {
 			// TODO (1.2) Read the input file and store its contents as a string.
 			//          If the file is empty or cannot be read, print an error message and terminate execution.
 
-			// ** YOUR CODE HERE **
+			try (FileReader fileReader = new FileReader(inputFileName)) {
+				for
+                }
 
-			// TODO (1.3) Process input text to extract words into a 1-D array.
+            // TODO (1.3) Process input text to extract words into a 1-D array.
 			//            Trim input, split words by whitespace, and store words in an array.
 
 			// ** YOUR CODE HERE **
