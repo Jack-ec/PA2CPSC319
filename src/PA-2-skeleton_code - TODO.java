@@ -288,18 +288,16 @@ class MergeSort {
 class SinglyLinkedList {
 
 	// TODO (5.1) Declare a head node representing the start of the linked list
-	// ** YOUR CODE HERE **
+	private Node head;
 
 	// TODO (5.2) Define the node structure for a singly linked list.
 	private static class Node {
-		// TODO (5.2) Store the Data (word) in this node
-		//            Store the Pointer to the next node in the linked list
-
-		// ** YOUR CODE HERE **
-
-		// TODO (5.3) Constructor for Node in SinglyLinkedList. Creates a new linked list node containing a word.
-
-		// ** YOUR CODE HERE **
+		String data;
+		Node next;
+		Node(String data) {
+			this.data = data;
+			this.next = null;
+		}
 	}
 
 	// =====================================================
@@ -338,7 +336,7 @@ class SinglyLinkedList {
 
 	// TODO (5.9) Implement method to check if the list is empty
 	public boolean isEmpty() {
-		// ** YOUR CODE HERE **
+		return head == null;
 	}
 
 	// ===============================================================
@@ -413,18 +411,14 @@ class AnagramGrouper {
 	public static Map<String, SinglyLinkedList> groupAnagrams(String[] words) {
 
 		// TODO (6.1) Store anagram groups while preserving insertion order
-		Map<?, ?> map = new LinkedHashMap<>(); // ** YOUR CODE WHERE '?' **
+		Map<String, SinglyLinkedList> map = new LinkedHashMap<>();
 
 		// TODO (6.2) Iterate through each word in the words array and processing them to group anagrams together.
-		for (?) { // ** YOUR CODE WHERE '?' **
-
+		for (int i =0; i < words.length; i++) {
 			// TODO (6.3) Extract the current word from the words array
-			
-			// ** YOUR CODE HERE **
-
+			String word = words[i];
 			// TODO (6.4) Call computeCanonicalForm() to get sorted-character form of the word (anagram key)
-			
-			// ** YOUR CODE HERE **
+			String canonicalForm = computeCanonicalForm(word);
 
 			// Debugging: Print computed canonical form
 			System.out.println("*********************************************");
