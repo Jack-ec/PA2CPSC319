@@ -204,27 +204,34 @@ static class MergeSort {
 		// right represents the ending index of the current subarray 'array'.
 
 		// TODO (2.1) If the subarray has at least two elements, then it can still be split further.
-		if ( ? )  { // ** YOUR CODE WHERE '?' **
+		if ( >= 2)  {
 
 			// TODO (2.2) Calculate the middle index to divide the array into two halves.
 
-			// ** YOUR CODE HERE **
+			int midIndex;
+			if (( % 2) != 0) {
+				midIndex = ( - 1) / 2;
+			}
+			else {
+				midIndex =  / 2;
+			}
 
 			// Debugging: Print subarray being sorted
 
-			// ** YOUR CODE HERE **
+			System.out.println(Arrays.toString(array));
 
 			// TODO (2.3) Recursively sort the left half of the array.
 
-			// ** YOUR CODE HERE **
+			mergeSort(array, 0, midIndex);
 
 			// TODO (2.4) Recursively sort the right half of the array.
 
-			// ** YOUR CODE HERE **
+			mergeSort(array, midIndex + 1, array.length);
 
 			// TODO (2.5) Merge the sorted left and right halves.
 
-			// ** YOUR CODE HERE **
+			merge(array, 0, midIndex, array.length);
+
 		}
 	}
 
