@@ -8,6 +8,8 @@
 // ====================================================================
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 // ============================
@@ -18,57 +20,55 @@ public class PA2 {
 
 	public static void main(String[] args) {
 		try {
-			// TODO (1.1) Prompt the user to enter an input file name, read the filename from standard input,
-			//          and print a confirmation message before proceeding with file operations.
+            // TODO (1.1) Prompt the user to enter an input file name, read the filename from standard input,
+            //          and print a confirmation message before proceeding with file operations.
 
-			Scanner sc;
+            Scanner sc;
             sc = new Scanner(System.in);
             System.out.println("Please Enter a File name: ");
-			String inputFileName;
-			inputFileName = sc.next();
+            String inputFileName;
+            inputFileName = sc.next();
 
-			// Debugging: Print filename before reading
-			System.out.println();
-			System.out.println("=============================================");
+            // Debugging: Print filename before reading
+            System.out.println();
+            System.out.println("=============================================");
             System.out.println(" 📂  Reading input file: " + inputFileName);
 
-			// TODO (1.2) Read the input file and store its contents as a string.
-			//          If the file is empty or cannot be read, print an error message and terminate execution.
+            // TODO (1.2) Read the input file and store its contents as a string.
+            //          If the file is empty or cannot be read, print an error message and terminate execution.
 
-			try (FileReader fileReader = new FileReader(inputFileName)) {
-				for
-                }
+            String fileContents = readFile(inputFileName);
 
             // TODO (1.3) Process input text to extract words into a 1-D array.
-			//            Trim input, split words by whitespace, and store words in an array.
+            //            Trim input, split words by whitespace, and store words in an array.
 
-			// ** YOUR CODE HERE **
+            String[] words = fileContents.split(" ");
 
-			// Debugging: Print words before sorting
+            // Debugging: Print words before sorting
             System.out.println("---------------------------------------------");
             System.out.println(" ⊗  Words before sorting: " + Arrays.toString(words));
-			System.out.println("---------------------------------------------");
+            System.out.println("---------------------------------------------");
 
-			// TODO (1.4) Call MergeSort to sort words alphabetically.
+            // TODO (1.4) Call MergeSort to sort words alphabetically.
+			
 
-			// ** YOUR CODE HERE **
 
-			// Debugging: Print words after sorting
-			System.out.println("*********************************************");
+            // Debugging: Print words after sorting
+            System.out.println("*********************************************");
             System.out.println(" ✓ Words after sorting: " + Arrays.toString(words));
 
-			// TODO (1.5) Call AnagramGrouper.groupAnagrams() to group words into singly linked lists (anagram groups).
-			Map<?, ?> anagramGroups = ? // ** YOUR CODE WHERE '?' **
+            // TODO (1.5) Call AnagramGrouper.groupAnagrams() to group words into singly linked lists (anagram groups).
+            Map<?, ?> anagramGroups = ? // ** YOUR CODE WHERE '?' **
 
-			                          // Debugging: Print grouped anagrams before final output
-			                          System.out.println("\n =============================================");
-			System.out.println(" {} Grouped Anagrams: " + anagramGroups);
+            // Debugging: Print grouped anagrams before final output
+            System.out.println("\n =============================================");
+            System.out.println(" {} Grouped Anagrams: " + anagramGroups);
 
-			// TODO (1.6) Call printFinalOutput() to print and save the final formatted output (anagram groups).
+            // TODO (1.6) Call printFinalOutput() to print and save the final formatted output (anagram groups).
 
-			// ** YOUR CODE HERE **
+            // ** YOUR CODE HERE **
 
-		} catch (Exception e) {  // Catch exceptions and handle errors.
+        } catch (Exception e) {  // Catch exceptions and handle errors.
 			e.printStackTrace(); // Print stack trace for debugging.
 		}
 	}
@@ -81,48 +81,44 @@ public class PA2 {
 
 		// TODO (1.7) Create a File object for the given file name.
 
-		// ** YOUR CODE HERE **
+		File file = new File(fileName);
 
 		// TODO (1.8) Check if the file exists before attempting to read.
-		if (?) { // ** YOUR CODE WHERE '?' **
+		if (!file.exists()) {
 
 			// TODO (1.9) Print an error message if the file is not found.
-
-			// ** YOUR CODE HERE **
+			System.err.println("The file could not be found or does not exist.");
 
 			// TODO (1.10) Return an empty string if the file doesn't exist.
 
-			// ** YOUR CODE HERE **
+			return "";
 
 		}
 
 		// TODO (1.11) Use StringBuilder to store file contents.
-
-		// ** YOUR CODE HERE **
+		StringBuilder fileContents = new StringBuilder();
 
 		// TODO (1.12) Use BufferedReader to read the file line by line.
 
-		// ** YOUR CODE HERE **
+		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
 		// TODO (1.13) Declare a variable to store each line read from the file.
 
-		// ** YOUR CODE HERE **
+		String line;
 
 		// TODO (1.14) Iterate through the file and read it line by line.
-		while (?) { // ** YOUR CODE WHERE '?' **
-
+		while ((line = reader.readLine()) != null) {
 			// TODO (1.15) Append each line to StringBuilder.
-
-			// ** YOUR CODE HERE **
+			fileContents.append(line);
 		}
 
 		// TODO (1.16) Close BufferedReader.
 
-		// ** YOUR CODE HERE **
+		reader.close();
 
 		// TODO (1.17) Return the final string containing the file content.
 
-		// ** YOUR CODE HERE **
+		return fileContents.toString();
 	}
 
 	// ==========================================
@@ -200,7 +196,7 @@ public class PA2 {
 // ============================
 // TODO (2) MERGE SORT CLASS
 // ============================
-class MergeSort {
+static class MergeSort {
 
 	public static void mergeSort(String[] array, int left, int right) {
 
