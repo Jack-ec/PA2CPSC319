@@ -248,9 +248,8 @@ static class MergeSort {
 
 		// TODO (2.8) Copy data from the original array into the left and right subarrays.
 
-        System.arraycopy(array, left, leftArray, 0, leftSize);
-
-		System.arraycopy(array, right, rightArray, 0, rightSize);
+		manualCopy(array, left, leftArray, leftSize, leftSize);
+		manualCopy(array, right, rightArray, rightSize, rightSize);
 
 
 		// Debugging: Print subarrays before merging
@@ -299,15 +298,11 @@ static class MergeSort {
 	// =============================
 	// MANUAL ARRAY COPY FUNCTION
 	// =============================
-
 	private static void manualCopy(String[] source, int sourceStart, String[] destination, int destStart, int length) {
-
 		// TODO (2.12) Iterate over the given range and copy elements
-		for (?) { // ** YOUR CODE WHERE '?' **
-
+		for (int i =0; i < length; i++) {
 			// TODO (2.13) Copy each element from source to destination at the correct index
-
-			// ** YOUR CODE HERE **
+			destination[destStart + i] = source[sourceStart + i];
 		}
 	}
 }
