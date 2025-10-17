@@ -234,17 +234,24 @@ static class MergeSort {
 
 	private static void merge(String[] array, int left, int mid, int right) {
 
+
 		// TODO (2.6) Compute the sizes of the two subarrays to be merged.
 
-		// ** YOUR CODE HERE **
+		int leftSize = mid - left + 1;
+		int rightSize = right - mid;
 
 		// TODO (2.7) Create temporary arrays to store elements from the left and right subarrays.
 
-		// ** YOUR CODE HERE **
+		String[] leftArray = new String[leftSize];
+		String[] rightArray = new String[rightSize];
+
 
 		// TODO (2.8) Copy data from the original array into the left and right subarrays.
 
-		// ** YOUR CODE HERE **
+        System.arraycopy(array, left, leftArray, 0, leftSize);
+
+		System.arraycopy(array, right, rightArray, 0, rightSize);
+
 
 		// Debugging: Print subarrays before merging
 		System.out.println("( ................... )");
@@ -252,15 +259,37 @@ static class MergeSort {
 
 		// TODO (2.9) Merge the two subarrays by comparing their elements.
 
-		// ** YOUR CODE HERE **
+		int i =0;
+		int j = 0;
+		int k = left;
+
+		while (i < leftSize && j < rightSize) {
+			if (leftArray[i].compareTo(rightArray[j]) < 0) {
+				array[k] = leftArray[i];
+				i++;
+			}
+			else {
+				array[k] = rightArray[j];
+				j++;
+			}
+			k++;
+		}
 
 		// TODO (2.10) Copy any remaining elements from `leftArray` to `array`.
 
-		// ** YOUR CODE HERE **
+		while (i < leftSize) {
+			array[k] = leftArray[i];
+			i++;
+			k++;
+		}
 
 		// TODO (2.11) Copy any remaining elements from `rightArray` to `array`.
 
-		// ** YOUR CODE HERE **
+		while (j < rightSize) {
+			array[k] = rightArray[j];
+			j++;
+			k++;
+		}
 
 		// Debugging: Print merged array
 		System.out.println(" ≡ After Merge: " + Arrays.toString(Arrays.copyOfRange(array, left, right + 1)));
