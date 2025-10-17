@@ -508,16 +508,13 @@ class AnagramGrouper {
 		System.out.println(" ► Starting Insertion Sort on: " + Arrays.toString(arr)); 
 
 		// TODO (6.8) Iterate over the array starting from index 1.
-		for (int key = 0; key < arr.length - 1; key++) {
+		for (int i = 1; i < arr.length - 1; i++) {
 			// TODO (6.9) Store the current element (`key`) to be inserted into the sorted section.
 
-			if (arr[key] > arr[key + 1]) {
-				arr[key + 1] = arr[key];
-			}
+			char key = arr[i];
 
 			// TODO (6.10) Initialize `j` to track the last element in the sorted portion of the array.
-
-			int j = key - 1;
+			int j = i - 1;
 
 			// Debugging: Show current key being inserted
 			System.out.println("-----------------------------");
@@ -526,7 +523,8 @@ class AnagramGrouper {
 			// TODO (6.11) Iterate backwards through the sorted portion of the array:
 			//             - Compare `key` with each element in the sorted section,
 			//             - Shift elements that are greater than `key` to the right.
-			while (j >= 0 && arr[j] > arr[j + 1]) {
+
+			while (j >= 0 && arr[j] > key) {
 
 				// TODO (6.12) Shift `arr[j]` one position to the right to create space for `key`.
 
@@ -542,7 +540,7 @@ class AnagramGrouper {
 
 			// TODO (6.14) Place `key` at its correct position after all shifts.
 
-			arr[key] = arr[j + 1];
+			arr[j + 1] = key;
 
 			// Debugging: Show array state after inserting key
 			System.out.println(" ✔  After inserting '" + key + "': " + Arrays.toString(arr));
