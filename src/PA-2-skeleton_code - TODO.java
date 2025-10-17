@@ -204,17 +204,10 @@ static class MergeSort {
 		// right represents the ending index of the current subarray 'array'.
 
 		// TODO (2.1) If the subarray has at least two elements, then it can still be split further.
-		if ( >= 2)  {
-
+		if (left < right)  {
 			// TODO (2.2) Calculate the middle index to divide the array into two halves.
 
-			int midIndex;
-			if (( % 2) != 0) {
-				midIndex = ( - 1) / 2;
-			}
-			else {
-				midIndex =  / 2;
-			}
+			int mid = (left + right) / 2;
 
 			// Debugging: Print subarray being sorted
 
@@ -222,15 +215,15 @@ static class MergeSort {
 
 			// TODO (2.3) Recursively sort the left half of the array.
 
-			mergeSort(array, 0, midIndex);
+			mergeSort(array, left, mid);
 
 			// TODO (2.4) Recursively sort the right half of the array.
 
-			mergeSort(array, midIndex + 1, array.length);
+			mergeSort(array, mid + 1, right);
 
 			// TODO (2.5) Merge the sorted left and right halves.
 
-			merge(array, 0, midIndex, array.length);
+			merge(array, left, mid, right);
 
 		}
 	}
