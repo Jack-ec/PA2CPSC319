@@ -332,19 +332,22 @@ class SinglyLinkedList {
 	public void addSorted(String word) {
 
 		// TODO (5.4) Allocate new Node
-		// ** YOUR CODE HERE **
+		Node node = new Node(word);
+
 
 		// TODO (5.5) Handle insertion at the beginning of the list:
 		//            If the list is empty (i.e., head == NULL) OR
 		//            If word comes before head.data alphabetically, THEN we insert at the beginning.
 		//            Return immediately after inserting at the head to avoid unnecessary traversal.
 
-        // ** YOUR CODE HERE **
+		if (head == null) {
+			head = node;
+			return;
 		}
 
 		// TODO (5.6) Position 'current' at the beginning of the singly linked list
-		
-		// ** YOUR CODE HERE **
+
+		Node current = head;
 
 		// TODO (5.7) Traverse to find correct insertion point
 		//            -------------------------------------------
@@ -352,13 +355,15 @@ class SinglyLinkedList {
 		//            (1) The end of the list is reached (current.next == null).
 		//            (2) The first node with data lexicographically greater than or equal to word is found.
 
-		// ** YOUR CODE HERE **
+		while (current.next != null) {
+			current = current.next;
 		}
 
 		// TODO (5.8) Insert the new node at the correct position
-		
-		// ** YOUR CODE HERE **
+
+		current.next = node;
 	}
+
 
 	// TODO (5.9) Implement method to check if the list is empty
 	public boolean isEmpty() {
@@ -385,32 +390,31 @@ class SinglyLinkedList {
 	public String toString() {
 
 		// TODO (5.10) Initialize a StringBuilder to store the result
-		
-		// ** YOUR CODE HERE **
+
+		StringBuilder sb = new StringBuilder();
 
 		// TODO (5.11) Start from the head of the linked list
-		
-		// ** YOUR CODE HERE **
+
+		Node current = head;
 
 		// TODO (5.12) Traverse the entire linked list
-		while (?) { // ** YOUR CODE WHERE '?' **
+		while (current != null) {
 
 			// TODO (5.13) Append the current node's data to the string
-			
-			// ** YOUR CODE HERE **
+			sb.append(current.data);
 
 			// TODO (5.14) Add a space if there is another node after this
-			
-			// ** YOUR CODE HERE **
+
+			if (current.next != null) {
+				sb.append(" ");
+			}
 
 			// TODO (5.15) Move to the next node in the list
-			
-			// ** YOUR CODE HERE **
+			current = current.next;
 		}
 
 		// TODO (5.16) Return the final formatted string
-		
-		// ** YOUR CODE HERE **
+		return sb.toString();
 	}
 }
 
