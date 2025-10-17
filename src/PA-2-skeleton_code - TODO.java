@@ -484,15 +484,15 @@ class AnagramGrouper {
 
 		// TODO (6.5) Convert word into a character array
 		
-		// ** YOUR CODE HERE **
+		char[] chars = word.toCharArray();
 
 		// TODO (6.6) Sort characters in-place calling insertion sort
 		
-		// ** YOUR CODE HERE **
+		insertionSort(chars);
 
 		// TODO (6.7) Return the converted sorted character array back to a string
 		
-		// ** YOUR CODE HERE **
+		return new String(chars);
 	}
 
 	// =================================
@@ -508,40 +508,41 @@ class AnagramGrouper {
 		System.out.println(" ► Starting Insertion Sort on: " + Arrays.toString(arr)); 
 
 		// TODO (6.8) Iterate over the array starting from index 1.
-		for (?) { // ** YOUR CODE WHERE '?' **
-
+		for (int key = 0; key < arr.length - 1; key++) {
 			// TODO (6.9) Store the current element (`key`) to be inserted into the sorted section.
-			
-			// ** YOUR CODE HERE **
+
+			if (arr[key] > arr[key + 1]) {
+				arr[key + 1] = arr[key];
+			}
 
 			// TODO (6.10) Initialize `j` to track the last element in the sorted portion of the array.
-			
-			// ** YOUR CODE HERE **
+
+			int j = key - 1;
 
 			// Debugging: Show current key being inserted
 			System.out.println("-----------------------------");
-			System.out.println(" ↳  Inserting '" + key + "' into sorted portion: " + Arrays.toString(Arrays.copyOfRange(arr, 0, i)));
+			System.out.println(" ↳  Inserting '" + key + "' into sorted portion: " + Arrays.toString(Arrays.copyOfRange(arr, 0, key)));
 
 			// TODO (6.11) Iterate backwards through the sorted portion of the array:
 			//             - Compare `key` with each element in the sorted section,
 			//             - Shift elements that are greater than `key` to the right.
-			while (?) { // ** YOUR CODE WHERE '?' **
+			while (j >= 0 && arr[j] > arr[j + 1]) {
 
 				// TODO (6.12) Shift `arr[j]` one position to the right to create space for `key`.
-				
-				// ** YOUR CODE HERE **
+
+				arr[j + 1] = arr[j];
 
 				// TODO (6.13) Move `j` one step left to continue shifting process.
-				
-				// ** YOUR CODE HERE **
+
+				j = j - 1;
 
 				// Debugging: Show shifting process
 				System.out.println(" ⟲  Shifting " + Arrays.toString(arr));
 			}
 
 			// TODO (6.14) Place `key` at its correct position after all shifts.
-			
-			// ** YOUR CODE HERE **
+
+			arr[key] = arr[j + 1];
 
 			// Debugging: Show array state after inserting key
 			System.out.println(" ✔  After inserting '" + key + "': " + Arrays.toString(arr));
