@@ -2,8 +2,8 @@
 // CPSC 319, F25, PA-2: Searching & Sorting (12%)
 // Efficient Anagram Extraction & Grouping
 //
-// NAME: ________________________________________________________
-// UCID: ____________________
+// NAME: Jack Chidlaw
+// UCID: 30187692
 //
 // ====================================================================
 
@@ -50,15 +50,15 @@ public class PA2 {
             System.out.println("---------------------------------------------");
 
             // TODO (1.4) Call MergeSort to sort words alphabetically.
-			
 
+			MergeSort.mergeSort(words, 0, words.length);
 
             // Debugging: Print words after sorting
             System.out.println("*********************************************");
             System.out.println(" ✓ Words after sorting: " + Arrays.toString(words));
 
             // TODO (1.5) Call AnagramGrouper.groupAnagrams() to group words into singly linked lists (anagram groups).
-            Map<?, ?> anagramGroups = ? // ** YOUR CODE WHERE '?' **
+            Map<String, SinglyLinkedList> anagramGroups = AnagramGrouper.groupAnagrams(words); // ** YOUR CODE WHERE '?' **
 
             // Debugging: Print grouped anagrams before final output
             System.out.println("\n =============================================");
@@ -66,7 +66,7 @@ public class PA2 {
 
             // TODO (1.6) Call printFinalOutput() to print and save the final formatted output (anagram groups).
 
-            // ** YOUR CODE HERE **
+            printFinalOutput(anagramGroups, inputFileName);
 
         } catch (Exception e) {  // Catch exceptions and handle errors.
 			e.printStackTrace(); // Print stack trace for debugging.
@@ -129,37 +129,37 @@ public class PA2 {
 
 		// TODO (1.18) Print a header for the final grouped anagrams output.
 
-		// ** YOUR CODE HERE **
+		System.out.println("HEADER");
 
 		// TODO (1.19) Initialize a counter to number the anagram groups in the output.
 
-		// ** YOUR CODE HERE **
+		int i = 0;
 
 		// TODO (1.20) Create a StringBuilder to store the formatted output before saving to a file.
 
-		// ** YOUR CODE HERE **
+		StringBuilder stringBuilder = new StringBuilder();
 
 		// Iterate over the grouped anagrams (values of the map).
 		for (SinglyLinkedList group : groups.values()) {
 
 			// TODO (1.21) Ensure the group is not null and contains words before printing.
-			if (?) {  // ** YOUR CODE WHERE '?' **
+			if (group != null) {
 
 				// TODO (1.22) Format the group as a numbered entry and remove any extra spaces.
 
-				// ** YOUR CODE HERE **
+				String formattedGroup = String.valueOf(i) + ":" + String.valueOf(group);
 
 				// TODO (1.23) Print the formatted group to the console.
 
-				// ** YOUR CODE HERE **
+				System.out.println(formattedGroup);
 
 				// TODO (1.24) Append the formatted group to the output content for file saving.
 
-				// ** YOUR CODE HERE **
+				stringBuilder.append(formattedGroup);
 
 				// TODO (1.25) Increment the counter for the next group.
 
-				// ** YOUR CODE HERE **
+				i++;
 			}
 		}
 
@@ -169,7 +169,7 @@ public class PA2 {
 
 		// TODO (1.26) Save the final grouped anagrams to a text file with a modified filename based on the input file.
 
-		// ** YOUR CODE HERE **
+		File saveFile = new File(inputFileName + "sorted");
 
 		// TODO (1.27) Use try-with-resources to ensure BufferedWriter is closed automatically after writing.
 		//             Initialize BufferedWriter for writing to the output file.
@@ -196,7 +196,7 @@ public class PA2 {
 // ============================
 // TODO (2) MERGE SORT CLASS
 // ============================
-static class MergeSort {
+class MergeSort {
 
 	public static void mergeSort(String[] array, int left, int right) {
 
