@@ -173,22 +173,20 @@ public class PA2 {
 
 		// TODO (1.27) Use try-with-resources to ensure BufferedWriter is closed automatically after writing.
 		//             Initialize BufferedWriter for writing to the output file.
-		try (?) { // ** YOUR CODE WHERE '?' **
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) { // ** YOUR CODE WHERE '?' **
 
 			// TODO (1.28) Write the final grouped anagrams output to the specified file.
 
-			// ** YOUR CODE HERE **
+			writer.write(String.valueOf(stringBuilder));
 
 			// TODO (1.29) Print a confirmation message indicating successful file saving.
 
-			// ** YOUR CODE HERE **
-
+			System.out.println("Save Successful");
 			// TODO (1.30) Handle any IOException that may occur during file writing.
-		} catch (?) { // ** YOUR CODE WHERE '?' **
+		} catch (IOException e) {
 
 			// TODO (1.31) Print an error message to standard error (stderr) if file writing fails.
-
-			// ** YOUR CODE HERE **
+			System.err.println("Failed to Save File");
 		}
 	}
 }
