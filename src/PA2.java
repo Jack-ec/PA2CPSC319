@@ -109,7 +109,7 @@ public class PA2 {
 		// TODO (1.14) Iterate through the file and read it line by line.
 		while ((line = reader.readLine()) != null) {
 			// TODO (1.15) Append each line to StringBuilder.
-			fileContents.append(line);
+			fileContents.append(line).append(" ");
 		}
 
 		// TODO (1.16) Close BufferedReader.
@@ -202,7 +202,8 @@ class MergeSort {
 		// right represents the ending index of the current subarray 'array'.
 
 		// TODO (2.1) If the subarray has at least two elements, then it can still be split further.
-		if (left < right)  {
+		if (left > right)  {
+
 			// TODO (2.2) Calculate the middle index to divide the array into two halves.
 
 			int mid = (left + right) / 2;
