@@ -51,14 +51,14 @@ public class PA2 {
 
             // TODO (1.4) Call MergeSort to sort words alphabetically.
 
-			MergeSort.mergeSort(words, 0, words.length);
+			MergeSort.mergeSort(words, 0, words.length-1);
 
             // Debugging: Print words after sorting
             System.out.println("*********************************************");
             System.out.println(" ✓ Words after sorting: " + Arrays.toString(words));
 
             // TODO (1.5) Call AnagramGrouper.groupAnagrams() to group words into singly linked lists (anagram groups).
-            Map<String, SinglyLinkedList> anagramGroups = AnagramGrouper.groupAnagrams(words); // ** YOUR CODE WHERE '?' **
+            Map<String, SinglyLinkedList> anagramGroups = AnagramGrouper.groupAnagrams(words);
 
             // Debugging: Print grouped anagrams before final output
             System.out.println("\n =============================================");
@@ -202,7 +202,7 @@ class MergeSort {
 		// right represents the ending index of the current subarray 'array'.
 
 		// TODO (2.1) If the subarray has at least two elements, then it can still be split further.
-		if (left > right)  {
+		if (left < right)  {
 
 			// TODO (2.2) Calculate the middle index to divide the array into two halves.
 
@@ -248,7 +248,7 @@ class MergeSort {
 		// TODO (2.8) Copy data from the original array into the left and right subarrays.
 
 		manualCopy(array, left, leftArray, leftSize, leftSize);
-		manualCopy(array, right, rightArray, rightSize, rightSize);
+		manualCopy(array, mid + 1, rightArray, rightSize, rightSize);
 
 
 		// Debugging: Print subarrays before merging
@@ -301,7 +301,7 @@ class MergeSort {
 		// TODO (2.12) Iterate over the given range and copy elements
 		for (int i =0; i < length; i++) {
 			// TODO (2.13) Copy each element from source to destination at the correct index
-			destination[destStart + i] = source[sourceStart + i];
+			destination[i] = source[sourceStart + i];
 		}
 	}
 }
@@ -509,7 +509,6 @@ class AnagramGrouper {
 		// TODO (6.8) Iterate over the array starting from index 1.
 		for (int i = 1; i < arr.length - 1; i++) {
 			// TODO (6.9) Store the current element (`key`) to be inserted into the sorted section.
-
 			char key = arr[i];
 
 			// TODO (6.10) Initialize `j` to track the last element in the sorted portion of the array.
