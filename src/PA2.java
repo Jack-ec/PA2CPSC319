@@ -129,7 +129,7 @@ public class PA2 {
 
 		// TODO (1.18) Print a header for the final grouped anagrams output.
 
-		System.out.println("HEADER");
+		System.out.println("Groups");
 
 		// TODO (1.19) Initialize a counter to number the anagram groups in the output.
 
@@ -507,7 +507,7 @@ class AnagramGrouper {
 		System.out.println(" ► Starting Insertion Sort on: " + Arrays.toString(arr)); 
 
 		// TODO (6.8) Iterate over the array starting from index 1.
-		for (int i = 1; i < arr.length - 1; i++) {
+		for (int i = 1; i < arr.length; i++) {
 			// TODO (6.9) Store the current element (`key`) to be inserted into the sorted section.
 			char key = arr[i];
 
