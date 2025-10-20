@@ -144,6 +144,7 @@ public class PA2 {
 				System.out.println(formattedGroup);
 
 				// Append the formatted group to the output content for file saving.
+				stringBuilder.append(System.lineSeparator());
 				stringBuilder.append(formattedGroup);
 
 				// Increment the counter for the next group.
