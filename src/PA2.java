@@ -142,8 +142,10 @@ public class PA2 {
 				System.out.println(formattedGroup);
 
 				// Append the formatted group to the output content for file saving.
-				stringBuilder.append(System.lineSeparator());
 				stringBuilder.append(formattedGroup);
+
+				//Jack Chidlaw: add a line seperator for better output file formating
+				stringBuilder.append(System.lineSeparator());
 
 				// Increment the counter for the next group.
 				i++;
