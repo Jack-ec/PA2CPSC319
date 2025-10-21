@@ -7,6 +7,11 @@
 //
 // ====================================================================
 
+//Comments without a "Jack Chidlaw:" infront of them were provided by the skeleton code JAVA file.
+// AI resources used: predictive code feature provided by IntelliJ IDE
+// All code was written by me with the help of independent research, Sources: Stack Overflow, docs.oracle.com and class notes
+
+
 import java.io.*;
 import java.util.*;
 
@@ -18,8 +23,11 @@ public class PA2 {
 
 	public static void main(String[] args) {
 		try {
-            // (1.1) Prompt the user to enter an input file name, read the filename from standard input,
+            // Prompt the user to enter an input file name, read the filename from standard input,
             //          and print a confirmation message before proceeding with file operations.
+
+			//Jack Chidlaw: user will have to input the FULL file name including the ".txt"
+			//input files will need to be in the same location as the project and the output files will be saved to the same location as the project
 
             Scanner sc;
             sc = new Scanner(System.in);
@@ -48,7 +56,6 @@ public class PA2 {
             System.out.println("---------------------------------------------");
 
             // Call MergeSort to sort words alphabetically.
-
 			MergeSort.mergeSort(words, 0, words.length-1);
 
             // Debugging: Print words after sorting
@@ -78,34 +85,25 @@ public class PA2 {
 	private static String readFile(String fileName) throws IOException {
 
 		// Create a File object for the given file name.
-
 		File file = new File(fileName);
 
-		// Check if the file exists before attempting to read.
+		// Jack Chidlaw: Check if the file exists before attempting to read and print message if it doesn't.
 		if (!file.exists()) {
-
-			// Print an error message if the file is not found.
 			System.err.println("The file could not be found or does not exist.");
-
-			// Return an empty string if the file doesn't exist.
-
 			return "";
 
 		}
 
-		// Use StringBuilder to store file contents.
 		StringBuilder fileContents = new StringBuilder();
 
 		// Use BufferedReader to read the file line by line.
 		BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
-		// Declare a variable to store each line read from the file.
-
+		// variable to store each line read from the file.
 		String line;
 
-		// Iterate through the file and read it line by line.
+		// Jack Chidlaw: Iterate through the file and read it line by line. append the line to StringBuilder than append a space char.
 		while ((line = reader.readLine()) != null) {
-			// Append each line to StringBuilder.
 			fileContents.append(line).append(" ");
 		}
 
@@ -159,9 +157,6 @@ public class PA2 {
 		// Save the final grouped anagrams to a text file with a modified filename based on the input file.
 		File saveFile = new File(inputFileName + "sorted");
 
-		// Use try-with-resources to ensure BufferedWriter is closed automatically after writing.
-		//             Initialize BufferedWriter for writing to the output file.
-
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveFile))) {
 			// Write the final grouped anagrams output to the specified file.
 			writer.write(String.valueOf(stringBuilder));
@@ -188,27 +183,22 @@ class MergeSort {
 		// left represents the starting index of the current subarray 'array'.
 		// right represents the ending index of the current subarray 'array'.
 
-		// If the subarray has at least two elements, then it can still be split further.
+		// Jack Chidlaw: if the subarray has a smaller starting index than ending index than split it
 		if (left < right)  {
 
 			// Calculate the middle index to divide the array into two halves.
-
 			int mid = (left + right) / 2;
 
 			// Debugging: Print subarray being sorted
-
 			System.out.println(Arrays.toString(array));
 
 			// Recursively sort the left half of the array.
-
 			mergeSort(array, left, mid);
 
 			// Recursively sort the right half of the array.
-
 			mergeSort(array, mid + 1, right);
 
 			// Merge the sorted left and right halves.
-
 			merge(array, left, mid, right);
 
 		}
@@ -222,18 +212,15 @@ class MergeSort {
 
 
 		// Compute the sizes of the two subarrays to be merged.
-
 		int leftSize = mid - left + 1;
 		int rightSize = right - mid;
 
 		// Create temporary arrays to store elements from the left and right subarrays.
-
 		String[] leftArray = new String[leftSize];
 		String[] rightArray = new String[rightSize];
 
 
 		// Copy data from the original array into the left and right subarrays.
-
 		manualCopy(array, left, leftArray, leftSize, leftSize);
 		manualCopy(array, mid + 1, rightArray, rightSize, rightSize);
 
@@ -244,10 +231,13 @@ class MergeSort {
 
 		// Merge the two subarrays by comparing their elements.
 
+		//Jack Chidlaw: Initialise counters to iterate through subarrays
 		int i =0;
 		int j = 0;
+
 		int k = left;
 
+		//Jack Chidlaw: compare front of subarrays and append accordingly to array
 		while (i < leftSize && j < rightSize) {
 			if (leftArray[i].compareTo(rightArray[j]) < 0) {
 				array[k] = leftArray[i];
@@ -261,7 +251,6 @@ class MergeSort {
 		}
 
 		// Copy any remaining elements from `leftArray` to `array`.
-
 		while (i < leftSize) {
 			array[k] = leftArray[i];
 			i++;
@@ -269,7 +258,6 @@ class MergeSort {
 		}
 
 		// Copy any remaining elements from `rightArray` to `array`.
-
 		while (j < rightSize) {
 			array[k] = rightArray[j];
 			j++;
@@ -332,21 +320,14 @@ class SinglyLinkedList {
 		}
 
 		// Position 'current' at the beginning of the singly linked list
-
 		Node current = head;
 
 		// Traverse to find correct insertion point
-		//-------------------------------------------
-		// Moves forward in the linked list until:
-		// (1) The end of the list is reached (current.next == null).
-		// (2) The first node with data lexicographically greater than or equal to word is found.
-
 		while (current.next != null) {
 			current = current.next;
 		}
 
 		// Insert the new node at the correct position
-
 		current.next = node;
 	}
 
@@ -397,15 +378,6 @@ class SinglyLinkedList {
 // This method groups words that are anagrams of each other by mapping each word to a canonical form (a sorted version of its characters).
 // Words that share the same canonical form belong to the same group and are stored in a singly linked list.
 // Key Idea: Two words are anagrams if they have the same characters in the same frequency.
-//
-// Approach:
-// ---------------
-// (1) Sort the characters of each word to get a canonical form.
-// (2) Use a LinkedHashMap<String, SinglyLinkedList>:
-//     (2.1) The key is the canonical form (e.g., "acr" for "arc" and "car").
-//     (2.2) The value is a singly linked list containing all words that share this form.
-// (3) Words are inserted into their respective groups in sorted order.
-//
 // =======================================================
 class AnagramGrouper {
 
@@ -456,15 +428,12 @@ class AnagramGrouper {
 	private static String computeCanonicalForm(String word) {
 
 		// Convert word into a character array
-
 		char[] chars = word.toCharArray();
 
 		// Sort characters in-place calling insertion sort
-
 		insertionSort(chars);
 
 		// Return the converted sorted character array back to a string
-
 		return new String(chars);
 	}
 
@@ -512,7 +481,6 @@ class AnagramGrouper {
 			}
 
 			// Place `key` at its correct position after all shifts.
-
 			arr[j + 1] = key;
 
 			// Debugging: Show array state after inserting key
