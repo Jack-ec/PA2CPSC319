@@ -345,11 +345,9 @@ class SinglyLinkedList {
 	public String toString() {
 
 		// Initialize a StringBuilder to store the result
-
 		StringBuilder sb = new StringBuilder();
 
-		// Start from the head of the linked list
-
+		//Jack Chidlaw: Initialise and Start from the head of the linked list
 		Node current = head;
 
 		// Traverse the entire linked list
